@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HillaryArt Publicidad</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --naranja: #E8621A;
+      --carbon: #3A3A3A;
+      --rojo: #CC0033;
+      --blanco: #FFFFFF;
+      --gris-claro: #f5f5f5;
+    }
+
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: var(--carbon); }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      background: var(--carbon);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 70px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    }
+
+    .brand { font-size: 1.5rem; font-weight: 900; color: var(--blanco); letter-spacing: 1px; }
+    .brand span { color: var(--rojo); }
+    .sub { font-size: 0.62rem; color: var(--naranja); letter-spacing: 3px; text-transform: uppercase; font-weight: 700; }
+
+    nav ul { list-style: none; display: flex; gap: 10px; }
+    nav ul li a {
+      color: var(--blanco);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 8px 18px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    nav ul li a:hover, nav ul li a.active { background: var(--naranja); }
+
+    /* ─── HERO ─── */
+    #principal {
+      background: linear-gradient(135deg, var(--carbon) 55%, #5a2a0a 100%);
+      color: var(--blanco);
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #principal::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 450px; height: 450px;
+      background: var(--naranja);
+      opacity: 0.12;
+      border-radius: 50%;
+    }
+
+    #principal::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 300px; height: 300px;
+      background: var(--rojo);
+      opacity: 0.08;
+      border-radius: 50%;
+    }
+
+    .hero-content { max-width: 750px; position: relative; z-index: 1; }
+    .hero-content h1 { font-size: 3.2rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
+    .hero-content h1 span { color: var(--naranja); }
+    .hero-content p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 36px; line-height: 1.6; }
+
+    .btn-primary {
+      background: var(--naranja);
+      color: var(--blanco);
+      padding: 14px 36px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: #c9531a; transform: translateY(-2px); }
+
+    /* ─── SECCIONES ─── */
+    section { padding: 80px 40px; }
+
+    .section-title { text-align: center; margin-bottom: 50px; }
+    .section-title h2 { font-size: 2.2rem; font-weight: 900; color: var(--carbon); display: inline-block; }
+    .section-title h2::after {
+      content: '';
+      display: block;
+      height: 4px;
+      background: var(--naranja);
+      border-radius: 2px;
+      margin-top: 8px;
+      width: 60%;
+      margin-left: auto; margin-right: auto;
+    }
+    .section-title p { color: #666; margin-top: 12px; font-size: 1rem; }
+
+    /* ─── PRODUCTOS ─── */
+    #productos { background: var(--gris-claro); }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 28px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--blanco);
+      border-radius: 10px;
+      padding: 32px 26px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border-top: 4px solid var(--naranja);
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 10px 30px rgba(0,0,0,0.13); }
+    .card-icon { font-size: 2.5rem; margin-bottom: 16px; }
+    .card h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 10px; }
+    .card p { color: #666; font-size: 0.93rem; line-height: 1.6; }
+
+    /* ─── SERVICIOS ─── */
+    #servicios { background: var(--carbon); color: var(--blanco); }
+    #servicios .section-title h2 { color: var(--blanco); }
+    #servicios .section-title p { color: #aaa; }
+
+    .servicios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .servicio-item {
+      background: rgba(255,255,255,0.07);
+      border-radius: 10px;
+      padding: 26px 20px;
+      border-left: 4px solid var(--naranja);
+      transition: background 0.2s;
+    }
+    .servicio-item:hover { background: rgba(255,255,255,0.12); }
+    .servicio-item h3 { font-size: 1rem; font-weight: 800; margin-bottom: 8px; color: var(--naranja); }
+    .servicio-item p { font-size: 0.88rem; color: #ccc; line-height: 1.5; }
+
+    /* ─── CONTACTO ─── */
+    #contacto { background: var(--gris-claro); }
+
+    .contacto-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .contacto-info h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 20px; }
+    .contacto-info p { font-size: 0.95rem; color: #555; line-height: 1.9; }
+    .contacto-info span { font-weight: 700; color: var(--naranja); }
+
+    .contacto-form { display: flex; flex-direction: column; gap: 14px; }
+    .contacto-form input,
+    .contacto-form textarea {
+      padding: 12px 16px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: border-color 0.2s;
+      background: var(--blanco);
+    }
+    .contacto-form input:focus,
+    .contacto-form textarea:focus { outline: none; border-color: var(--naranja); }
+    .contacto-form textarea { min-height: 130px; resize: vertical; }
+    .contacto-form button {
+      background: var(--naranja);
+      color: var(--blanco);
+      padding: 13px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .contacto-form button:hover { background: #c9531a; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #222;
+      color: #aaa;
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 0.88rem;
+    }
+    footer strong { color: var(--naranja); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 700px) {
+      nav { padding: 0 16px; }
+      nav ul li a { padding: 7px 10px; font-size: 0.8rem; }
+      .hero-content h1 { font-size: 2rem; }
+      .contacto-container { grid-template-columns: 1fr; gap: 30px; }
+      section { padding: 60px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div>
+      <div class="brand">Hillary<span>Art</span></div>
+      <div class="sub">Publicidad</div>
+    </div>
+    <ul>
+      <li><a href="#principal" class="active">Principal</a></li>
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="principal">
+    <div class="hero-content">
+      <h1>Tu marca merece <span>brillar</span></h1>
+      <p>Somos expertos en construcción, diseño gráfico y publicidad. Convertimos tus ideas en soluciones visuales que impactan y venden.</p>
+      <a href="#contacto" class="btn-primary">¡Contáctanos ahora!</a>
+    </div>
+  </section>
+
+  <!-- PRODUCTOS -->
+  <section id="productos">
+    <div class="section-title">
+      <h2>Nuestros Productos</h2>
+      <p>Todo lo que necesitas para destacar tu marca en el mercado</p>
+    </div>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">🪧</div>
+        <h3>Rótulos y Vallas</h3>
+        <p>Fabricación e instalación de rótulos luminosos, vallas publicitarias y señalización corporativa de alto impacto.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🖨️</div>
+        <h3>Impresión Digital</h3>
+        <p>Impresión de alta calidad en gran formato: banners, lonas, vinilos, brochures, tarjetas y mucho más.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏗️</div>
+        <h3>Estructuras Metálicas</h3>
+        <p>Diseño y construcción de estructuras para exhibición, stands y mobiliario comercial personalizado.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎁</div>
+        <h3>Artículos Promocionales</h3>
+        <p>Personalización de productos con tu logo: camisetas, tazas, lapiceros, libretas y artículos para eventos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="section-title">
+      <h2>Nuestros Servicios</h2>
+      <p>Soluciones integrales para tu empresa y marca</p>
+    </div>
+    <div class="servicios-grid">
+      <div class="servicio-item">
+        <h3>🎨 Diseño Gráfico</h3>
+        <p>Identidad visual, logotipos, flyers, catálogos y todo el material publicitario para tu negocio.</p>
+      </div>
+      <div class="servicio-item">
+        <h3>📱 Redes Sociales</h3>
+        <p>Contenido visual para Instagram, TikTok, Facebook y LinkedIn que conecta con tu audiencia.</p>
+      </div>
+      <div class="servicio-item">
+        <h3>🏢 Branding Corporativo</h3>
+        <p>Manuales de marca, uniformes corporativos y ambientación de espacios comerciales.</p>
+      </div>
+      <div class="servicio-item">
+        <h3>🔧 Instalación</h3>
+        <p>Servicio completo de instalación de rótulos, vinilos decorativos y estructuras publicitarias.</p>
+      </div>
+      <div class="servicio-item">
+        <h3>🌐 Diseño Web</h3>
+        <p>Páginas web modernas y responsivas para posicionar tu negocio en línea.</p>
+      </div>
+      <div class="servicio-item">
+        <h3>📸 Fotografía</h3>
+        <p>Sesiones fotográficas de productos, instalaciones y eventos para uso publicitario.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="section-title">
+      <h2>Contáctanos</h2>
+      <p>Estamos listos para hacer realidad tu proyecto</p>
+    </div>
+    <div class="contacto-container">
+      <div class="contacto-info">
+        <h3>¿Tienes un proyecto en mente?</h3>
+        <p>📍 <span>Dirección:</span> San Pedro Sula, Honduras</p>
+        <p>📞 <span>Teléfono:</span> +504 0000-0000</p>
+        <p>✉️ <span>Email:</span> info@hillaryartpublicidad.com</p>
+        <p>🕐 <span>Horario:</span> Lunes a Viernes 8:00am – 6:00pm</p>
+        <br>
+        <p>Somos una empresa comprometida con la calidad y creatividad. Cada proyecto lo tratamos con dedicación para superar las expectativas de nuestros clientes.</p>
+      </div>
+      <form class="contacto-form" onsubmit="enviar(event)">
+        <input type="text" placeholder="Tu nombre completo" required />
+        <input type="email" placeholder="Tu correo electrónico" required />
+        <input type="tel" placeholder="Tu número de teléfono" />
+        <textarea placeholder="Cuéntanos sobre tu proyecto..."></textarea>
+        <button type="submit">Enviar mensaje 🚀</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 <strong>HillaryArt Publicidad</strong>. Todos los derechos reservados. | Construcción · Diseño Gráfico · Publicidad</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    const sections = document.querySelectorAll('section');
+    const links = document.querySelectorAll('nav ul li a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
+      links.forEach(l => { l.classList.toggle('active', l.getAttribute('href') === '#' + current); });
+    });
+
+    function enviar(e) {
+      e.preventDefault();
+      alert('¡Mensaje enviado! Nos pondremos en contacto contigo pronto. 😊');
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>
